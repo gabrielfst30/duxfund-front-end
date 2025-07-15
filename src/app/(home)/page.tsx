@@ -1,10 +1,19 @@
+'use client'
+
 import Image from "next/image";
-import styles from "./page.module.scss";
+import styles from "./styles.module.scss";
+import { useState } from 'react';
+import { connectClient } from "@/xrpl/xrplClient";
 
 export default function Home() {
+
+  const handleCheck = async () => {
+    const result = await connectClient()
+    console.log(result)
+  }
   return (
     <div>
-      OI
+      <button onClick={handleCheck}>TESTE</button>
     </div>
   );
 }
