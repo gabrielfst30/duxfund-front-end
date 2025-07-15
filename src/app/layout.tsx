@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from 'next/font/google'
-import "./globals.scss";
+import "../styles/globals.scss";
 
 export const metadata: Metadata = {
   title: "DuxFund",
