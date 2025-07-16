@@ -24,3 +24,67 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+
+.nft-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.nft-form {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.submit-button {
+  background: #0070f3;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.submit-button:hover {
+  background: #0061d6;
+}
+
+.status-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 4px;
+  white-space: pre-wrap;
+}
+
+.status-message.success {
+  background: #e6ffed;
+  border: 1px solid #a3f3a3;
+}
+
+.status-message.error {
+  background: #fff0f0;
+  border: 1px solid #ffb3b3;
+}

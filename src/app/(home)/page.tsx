@@ -1,10 +1,14 @@
 import Image from "next/image";
-import styles from "./page.module.scss";
+import Link from "next/link"
+import styles from "./styles.module.scss";
 
 export default function Home() {
   return (
     <div>
-      OI
+      <h1>Home Page</h1>
+      <Link href="/nft" className={styles.nftLink}>
+        Ver NFT
+      </Link>
     </div>
   );
 }
