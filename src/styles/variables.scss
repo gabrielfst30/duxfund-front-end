@@ -1,0 +1,33 @@
+/* //Cores principais
+$color-primary: #FDC32F; // Cor tema
+$color-background: #141414; //Cor background padrão
+
+//Cores texto
+$color-text-white: #ffffff; // Texto principal
+$color-text-black: #000000; // Texto alternativo para background amarelo
+$color-subtitle: #ababab; // Texto do subtítulo
+
+// Semântica (bom pra temas e reuso)
+$success: hsl(120, 64%, 29%);
+$error: hsl(6, 78%, 57%);
+$warning: hsl(48, 89%, 50%);
+$info: hsl(204, 70%, 53%);
+
+// Gradientes ou efeitos
+$glass-background: rgba(255, 255, 255, 0.05); // Efeito vidro
+
+// Tipografia
+$font-base: var(--font-space-grotesk), sans-serif; // Fonte otimizada no layout
+$font-size-base: 14px; // Paragráfos
+$font-size-title: 24px; // Títulos
+$font-size-subtitle: 14px; // Subtitulos
+
+// Espaçamentos
+$spacing-list: 16px;
+$spacing-cards: 20px;
+*/
+$primary-color: #FDC32F;
+$bg-color: #0d0d0d;
+$text-color: #ffffff;
+$hover-color: lighten($primary-color, 10%);
+$font-family: var(--font-space-grotesk);

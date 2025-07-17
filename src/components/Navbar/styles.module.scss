@@ -1,0 +1,85 @@
+@import "@/styles/variables";
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: $bg-color;
+  color: $text-color;
+  font-family: $font-family;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  transition: all 0.3s ease-in-out;
+}
+
+.logo a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: $primary-color;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+
+  li a {
+    text-decoration: none;
+    color: $text-color;
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.2s ease-in-out;
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: $primary-color;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: $primary-color;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.walletSection {
+  .connectBtn {
+    background-color: $primary-color;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: $hover-color;
+      transform: scale(1.03);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
