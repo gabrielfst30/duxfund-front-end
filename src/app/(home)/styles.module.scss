@@ -1,0 +1,26 @@
+.content {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1280px; 
+  height: 725px; 
+  padding: 20px 24px; 
+  margin: 0 auto; 
+  opacity: 1;
+}
+
+.leftContent {
+  width: 662px;
+  height: 695px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  opacity: 1;
+  padding: 0; 
+}
+
+.rightContent {
+  width: 556px;
+  height: 695px;
+  opacity: 1;
+}
