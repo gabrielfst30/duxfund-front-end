@@ -1,0 +1,27 @@
+.Navbar {
+  background-color: #111;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+
+  h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+
+  p {
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .connect {
+    background-color: #fdc32f; 
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: black; 
+    font-weight: 600;
+  }
+}
