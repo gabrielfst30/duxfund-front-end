@@ -1,4 +1,51 @@
-.bold-spacing {
-  line-height: 1.5; /* espaçamento entre linhas */
-  font-weight: bold; /* negrito */
+.ProjectDetails {
+  width: 662px;
+  height: 208px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 12px;
+  opacity: 1;
+  transform: rotate(0deg);
+
+  background-color: #121212;
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  overflow: hidden;
+  /* força respeitar bordas arredondadas */
+
+  .title {
+    width: 480px;
+    height: 45px;
+    opacity: 1;
+    transform: rotate(0deg);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    h1 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 1px 0;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 500;
+      color: #ccc;
+      margin: 0;
+    }
+  }
+
+  .text {
+    p {
+      width: 598px;
+      height: 100px;
+      opacity: 1;
+    }
+  }
 }
