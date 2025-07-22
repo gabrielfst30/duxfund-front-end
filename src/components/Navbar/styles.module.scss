@@ -5,11 +5,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #e5e8eb;
 
   h1 {
     font-size: 1.8rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
   }
 
   p {
@@ -18,10 +20,17 @@
   }
 
   .connect {
-    background-color: #fdc32f; 
+    background-color: #fdc32f;
     padding: 8px 16px;
     border-radius: 6px;
-    color: black; 
+    color: black;
     font-weight: 600;
+  }
+
+  .logoImage {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
   }
 }
