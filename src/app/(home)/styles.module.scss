@@ -1,26 +1,58 @@
+body {
+  font-family: "Space Grotesk", sans-serif;
+  color: #121212;
+}
+
 .content {
   display: flex;
   gap: 20px;
   width: 100%;
-  max-width: 1280px; 
-  height: 725px; 
-  padding: 20px 24px; 
-  margin: 0 auto; 
+  max-width: 1280px;
+  height: 800px;
+  padding: 20px 24px;
+  margin: 0 auto;
   opacity: 1;
-}
 
-.leftContent {
-  width: 662px;
-  height: 695px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px; 
-  opacity: 1;
-  padding: 0; 
-}
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+    padding: 16px 12px;
+  }
 
-.rightContent {
-  width: 556px;
-  height: 695px;
-  opacity: 1;
+  .leftContent {
+    width: 662px;
+    height: 695px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 1;
+    padding: 0;
+
+    @media (max-width: 1024px) {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: auto;
+      gap: 16px;
+    }
+  }
+
+  .rightContent {
+    width: 556px;
+    height: 695px;
+    opacity: 1;
+
+    @media (max-width: 1024px) {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
