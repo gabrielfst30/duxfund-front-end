@@ -1,0 +1,19 @@
+.container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.nftLink {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #0070f3;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #005bb5;
+  }
+}
