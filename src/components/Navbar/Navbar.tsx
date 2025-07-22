@@ -1,35 +1,27 @@
+// src/components/Navbar/Navbar.tsx
 'use client';
-
 import { useState } from 'react';
-import api from '@/services/api';
+import { connectXumm, checkXummStatus, StatusResult } from '@/services/wallet';
 import styles from './styles.module.scss';
 
 export default function Navbar() {
-  const [connected, setConnected]     = useState(false);
-  const [loading, setLoading]         = useState(false);
-  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [loading, setLoading]           = useState(false);
+  const [connected, setConnected]       = useState(false);
+  const [walletAddress, setWalletAddress] = useState<string>();
 
   const handleConnect = async () => {
     if (loading || connected) return;
     setLoading(true);
 
     try {
-      // chamo o POST e pego URL + uuid
-      const resp = await api.post<{ connectUrl: string; uuid: string }>('/api/wallet/connect');
-      const { connectUrl, uuid } = resp.data;
-
+      const { connectUrl, uuid } = await connectXumm();
       window.open(connectUrl, '_blank');
 
-      // polling a cada 2s até o usuário aprovar no XUMM
       const interval = setInterval(async () => {
-        const status = await api.get<{
-          meta:     { resolved: boolean };
-          response: { account: string };
-        }>(`/api/wallet/connect/${uuid}`);
-
-        if (status.data.meta.resolved) {
+        const result = await checkXummStatus(uuid);
+        if ((result as StatusResult).resolved) {
           console.log('Carteira conectada com sucesso!');
-          setWalletAddress(status.data.response.account);
+          setWalletAddress((result as StatusResult).account);
           setConnected(true);
           clearInterval(interval);
         }
@@ -43,7 +35,7 @@ export default function Navbar() {
 
   return (
     <nav className={styles.navbar}>
-      <h1 className={styles.brand}>
+      <h1>
         Duxfund{walletAddress ? ` – ${walletAddress}` : ''}
       </h1>
       <button
@@ -51,11 +43,7 @@ export default function Navbar() {
         disabled={loading || connected}
         className={styles.connectButton}
       >
-        {loading
-          ? 'Conectando...'
-          : connected
-          ? 'Conectado'
-          : 'Conectar Carteira'}
+        {loading ? 'Conectando...' : connected ? 'Conectado' : 'Conectar Carteira'}
       </button>
     </nav>
   );
