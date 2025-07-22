@@ -1,14 +1,16 @@
 .ProjectDetails {
   width: 662px;
   height: 208px;
+  padding: 16px;
   padding-left: 16px;
   padding-right: 16px;
   border-radius: 12px;
+  gap: 20px;
   opacity: 1;
   transform: rotate(0deg);
 
   background-color: #121212;
-  color: #fff;
+  color: #ffffff;
 
   display: flex;
   flex-direction: column;
@@ -36,13 +38,21 @@
     .subtitle {
       font-size: 14px;
       font-weight: 500;
-      color: #ccc;
+      line-height: 21px;
+      letter-spacing: 0px;
+      color: #ababab;
       margin: 0;
     }
   }
 
   .text {
     p {
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: justify;
       width: 598px;
       height: 100px;
       opacity: 1;

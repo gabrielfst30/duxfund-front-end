@@ -4,8 +4,13 @@ export function ProjectDetails() {
   return (
     <div className={styles.ProjectDetails}>
       <div className={styles.title}>
-        <h1>Project Details</h1>
-        <div className={styles.subtitle}>Fund the Future of Web3</div>
+        <div className={styles.heading}>
+          <h1>Project Details</h1>
+        </div>
+
+        <div className={styles.subtitleWrapper}>
+          <div className={styles.subtitle}>Fund the Future of Web3</div>
+        </div>
       </div>
 
       <div className={styles.text}>
