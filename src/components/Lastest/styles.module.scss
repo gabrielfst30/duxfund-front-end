@@ -5,34 +5,48 @@
   opacity: 1;
   transform: rotate(0deg);
 
-  background-color: #121212;
   padding: 20px;
   border-radius: 12px;
-  color: white;
+  color: #ffffff;
 
   display: flex;
   flex-direction: column;
 
   h1 {
-    font-size: 18px;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 28px;
     font-weight: bold;
+    letter-spacing: 0px;
     margin-bottom: 16px;
   }
 
   .list {
     display: flex;
+    border-radius: 12px;
     flex-direction: column;
-    gap: 12px;
-    overflow-y: auto;
+    gap: 12.2px;
+    // Removida rolagem
+    overflow-y: hidden;
+    // Opcional: limite visual se tiver muitos cards
+    max-height: 100%;
   }
 
   .card {
+    width: 100%;
+    height: 70px;
+    min-height: 70px;
+
+    padding: 8px 16px;
+    border-radius: 12px;
+
     background-color: #1e1e1e;
+    opacity: 1;
+    transform: rotate(0deg);
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    border-radius: 8px;
   }
 
   .left {
@@ -43,7 +57,7 @@
   .address {
     font-size: 14px;
     font-family: monospace;
-    word-break: break-all;
+    word-break: break-word;
   }
 
   .time {
