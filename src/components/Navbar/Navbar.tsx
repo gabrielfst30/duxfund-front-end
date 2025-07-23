@@ -9,9 +9,13 @@ export function Navbar() {
           DuxFund
         </h1>
       </div>
+
       <div className={styles.connect}>
-        <p>Connect Wallet</p>
+        <div className={styles.connectText}>
+          <p>Connect Wallet</p>
+        </div>
       </div>
     </div>
   );
 }
+

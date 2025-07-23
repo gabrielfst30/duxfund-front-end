@@ -8,7 +8,9 @@
   border-bottom: 1px solid #e5e8eb;
 
   h1 {
-    font-size: 1.8rem;
+    width: 78px;
+    height: 23px;
+    font-size: 18px;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -20,17 +22,26 @@
   }
 
   .connect {
+    width: 136px;
+    height: 40px;
+    min-width: 84px;
+    max-width: 480px;
     background-color: #fdc32f;
-    padding: 8px 16px;
+    padding: 8px;
     border-radius: 6px;
     color: black;
-    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
   }
 
   .logoImage {
     margin-right: 8px;
-    width: 24px;
-    height: 24px;
+    width: 33px;
+    height: 50px;
     vertical-align: middle;
   }
 }
