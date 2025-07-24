@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./styles.module.scss";
 
 export function Navbar() {
@@ -5,7 +6,13 @@ export function Navbar() {
     <div className={styles.Navbar}>
       <div className={styles.logo}>
         <h1>
-          <img src="/logoduxfund.png" alt="Logo" className={styles.logoImage} />
+          <Image
+            src="/logoduxfund.png"
+            alt="Logo"
+            width={40}
+            height={40}
+            className={styles.logoImage}
+          />
           DuxFund
         </h1>
       </div>
@@ -18,4 +25,3 @@ export function Navbar() {
     </div>
   );
 }
-
