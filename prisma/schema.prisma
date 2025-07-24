@@ -38,7 +38,7 @@ model Transactions {
 
   // Criando relacionamento
   payments Payments[] 
-  nft_mints Nft_Mints[]
+  nft_mints NftMints[]
 
   @@map("transactions")
 }
@@ -55,7 +55,7 @@ model Payments {
   @@map("payments")
 }
 
-model Nft_Mints {
+model NftMints {
   id    Int    @id
   uri   String
   taxon Int
