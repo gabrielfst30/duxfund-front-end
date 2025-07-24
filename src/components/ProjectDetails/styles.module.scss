@@ -6,8 +6,6 @@
   padding-right: 16px;
   border-radius: 12px;
   gap: 20px;
-  opacity: 1;
-  transform: rotate(0deg);
 
   background-color: #121212;
   color: #ffffff;
@@ -16,14 +14,9 @@
   flex-direction: column;
   justify-content: center;
 
-  overflow: hidden;
-  /* força respeitar bordas arredondadas */
-
   .title {
     width: 480px;
     height: 45px;
-    opacity: 1;
-    transform: rotate(0deg);
 
     display: flex;
     flex-direction: column;
@@ -32,7 +25,7 @@
     h1 {
       font-size: 16px;
       font-weight: 700;
-      margin: 0 0 1px 0;
+      margin: 1px;
     }
 
     .subtitle {
@@ -55,7 +48,6 @@
       text-align: justify;
       width: 598px;
       height: 100px;
-      opacity: 1;
     }
   }
 }

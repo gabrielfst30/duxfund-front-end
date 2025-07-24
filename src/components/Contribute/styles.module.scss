@@ -3,11 +3,9 @@
   font-family: Space Grotesk;
   width: 662px;
   height: 236px;
-  opacity: 1;
   border-radius: 12px;
   padding: 20px 16px;
   color: #fff;
-
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -65,10 +63,5 @@
     font-weight: 700;
     color: #000;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: #fdc32f;
-    }
   }
 }
