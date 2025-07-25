@@ -45,7 +45,7 @@ model Transactions {
 
 model Payments {
   id               Int    @id
-  destinations     String @db.VarChar(35) //address destinatário
+  destination     String @db.VarChar(35) //address destinatário
   deliver_max      BigInt
   delivered_amount String @db.VarChar(45)
 
