@@ -61,9 +61,9 @@ export async function checkXummStatus(
 ): Promise<ConnectResult | StatusResult> {
   // 1) Envia UUID no corpo da requisição para checar status
   const res = await fetch(ENDPOINT, {
-    method:  'POST',
+    method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ uuid }),
+    body: JSON.stringify({ uuid }),
   });
 
   // 2) Verifica se o status HTTP indica sucesso
