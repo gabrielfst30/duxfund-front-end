@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk } from 'next/font/google'
 import "../styles/globals.scss";
+import Navbar from '@/components/Navbar/Navbar';
+
+
 
 export const metadata: Metadata = {
   title: "DuxFund",
@@ -23,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={spaceGrotesk.variable}>
       <body>
+        <Navbar/>
         {children}
       </body>
     </html>
