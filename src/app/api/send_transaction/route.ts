@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { client } from "@/xrpl/client"
 import { xrpToDrops } from "xrpl";
 import { Wallet } from "xrpl";
+import { prisma } from "@/prisma";
+
 
 export async function POST() {
 
@@ -33,13 +35,13 @@ export async function POST() {
     const signed = userWallet.sign(preparedTransaction)
 
     //Enviando tx com assinatura
-    const result = await client.submitAndWait(signed.tx_blob);
+    const txResult = await client.submitAndWait(signed.tx_blob);
 
 
     /**--------------MINTANDO NFT--------------**/
 
     //1. Pegando o hash da transação para usar no NFT
-    const txHash = result.result.tx_json.hash as string || result.result.hash as string
+    const txHash = txResult.result.tx_json.hash as string || txResult.result.hash as string
 
 
     //2. Codificando o hash em hexadecimal para o campo URI
@@ -62,14 +64,61 @@ export async function POST() {
     const signerMint = userWallet.sign(mintNFT)
     const mintResult = await client.submitAndWait(signerMint.tx_blob);
 
+    console.log(txResult)
+
 
     //Sempre desconectar após operações
     client.disconnect()
 
+    // 1) Cria o payment
+    // const payment = await prisma.payments.create({
+    //     data: {
+    //         destination: txResult.result.tx_json.Destination,   
+    //         deliver_max: BigInt(txResult.result.tx_json.DeliverMax),
+    //         delivered_amount: BigInt(txResult.result.meta?.delivered_amount),
+    //     },
+    // });
 
-    return NextResponse.json({
-        payment: result,
-        nftMint: mintResult
-    }, { status: 200 });
+    // 2) Cria o nft mint
+    // const nftMint = await prisma.nftMints.create({
+    //     data: {
+    //         uri: txResult.result.tx_json.URI,
+    //         taxon: txResult.result.tx_json.NFTokenTaxon,  
+    //     },
+    // });
 
+    // 3) Cria a transaction
+    // const transaction = await prisma.transactions.create({
+    //     data: {
+    //         id_payments: payment.id,
+    //         id_nft_mints: nftMint.id,
+    //         xrpl_id: txResult.result.tx_json.Sequence,
+    //         type: txResult.result.tx_json.TransactionType,
+    //         hash: txResult.result.hash,
+    //         ledger_index: txResult.result.ledger_index,
+    //         close_time: new Date(txResult.result.close_time_iso),
+    //         validated: txResult.result.validated ? 1 : 0,
+    //         result_code: txResult.result.meta?.TransactionResult ?? "",
+    //         fee: BigInt(txResult.result.tx_json.Fee),
+    //         account: txResult.result.tx_json.Account,
+    //         sequence: BigInt(txResult.result.tx_json.Sequence),
+    //         last_ledger_seq: txResult.result.tx_json.LastLedgerSequence
+    //             ? BigInt(txResult.result.tx_json.LastLedgerSequence)
+    //             : undefined,
+    //         flags: typeof txResult.result.tx_json.Flags === "number"
+    //             ? BigInt(txResult.result.tx_json.Flags)
+    //             : undefined,
+    //         ledger_hash: txResult.result.ledger_hash,
+    //         ctid: txResult.result.ctid,
+    //     },
+    // });
+
+    // return NextResponse.json({
+    //     transaction
+    // }, { status: 200 });
+
+    // return NextResponse.json({
+    //     payment: txResult,
+    //     nftMint: mintResult
+    // }, { status: 200 });
 }

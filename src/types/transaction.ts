@@ -34,3 +34,5 @@ export interface NftMints {
   uri: string;
   taxon?: number;
 }
+
+
