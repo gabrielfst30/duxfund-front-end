@@ -1,7 +1,7 @@
 // src/app/api/xumm_wallet/route.ts
 
 import { NextResponse, NextRequest } from 'next/server';
-import { XummSdk }                   from 'xumm-sdk';
+import { XummSdk } from 'xumm-sdk';
 
 /**
  * POST /api/xumm_wallet
@@ -14,7 +14,7 @@ import { XummSdk }                   from 'xumm-sdk';
  */
 export async function POST(request: NextRequest) {
   // 1) Validar as chaves secretas no ambiente
-  const apiKey    = process.env.XUMM_API_KEY;
+  const apiKey = process.env.XUMM_API_KEY;
   const apiSecret = process.env.XUMM_API_SECRET;
   if (!apiKey || !apiSecret) {
     // Se faltar qualquer variável, retorna erro 500 com mensagem clara
@@ -70,8 +70,8 @@ export async function POST(request: NextRequest) {
 
   // 6) Retornar dados iniciais para o cliente
   return NextResponse.json({
-    uuid:       created.uuid,        // Identificador do payload (para polling)
+    uuid: created.uuid,        // Identificador do payload (para polling)
     connectUrl: created.next.always, // URL/QR para abrir a XUMM Wallet
-    resolved:   false,               // Estado inicial: não aprovado
+    resolved: false,               // Estado inicial: não aprovado
   });
 }
