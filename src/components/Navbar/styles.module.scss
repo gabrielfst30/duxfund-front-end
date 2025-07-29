@@ -1,0 +1,40 @@
+.Navbar {
+  background-color: #111;
+  color: white;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e8eb;
+
+  h1 {
+    width: 78px;
+    height: 23px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  p {
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .connect {
+    width: 136px;
+    height: 40px;
+    min-width: 84px;
+    max-width: 480px;
+    background-color: #fdc32f;
+    padding: 8px;
+    border-radius: 6px;
+    color: black;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+  }
+}
