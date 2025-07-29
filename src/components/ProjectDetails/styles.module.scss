@@ -1,0 +1,53 @@
+.ProjectDetails {
+  width: 662px;
+  height: 208px;
+  padding: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 12px;
+  gap: 20px;
+
+  background-color: #121212;
+  color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .title {
+    width: 480px;
+    height: 45px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    h1 {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 1px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+      letter-spacing: 0px;
+      color: #ababab;
+      margin: 0;
+    }
+  }
+
+  .text {
+    p {
+      color: #ffffff;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0px;
+      text-align: justify;
+      width: 598px;
+      height: 100px;
+    }
+  }
+}

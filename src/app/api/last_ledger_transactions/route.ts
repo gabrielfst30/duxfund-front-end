@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { client } from "@/xrpl/client"
+import { client } from "@/services/xrpl/client"
 
 export async function POST() {
 
