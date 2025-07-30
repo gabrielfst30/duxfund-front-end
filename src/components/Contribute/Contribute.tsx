@@ -16,7 +16,7 @@ export function Contribute({ onSend }: ContributeProps) {
     if (value.length === 0) return "";
     if (value.length <= 6) {
       // ex: "543" vira "0,000543", "54" vira "0,000054"
-      return "0," + value.padStart(6, "0");
+      return "0." + value.padStart(6, "0");
     }
     const integerPart = value.slice(0, -6);
     const decimalPart = value.slice(-6);
