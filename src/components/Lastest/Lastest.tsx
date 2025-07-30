@@ -12,7 +12,7 @@ interface LastestProps {
 export function Lastest({ contributions }: LastestProps) {
   return (
     <div className={styles.Lastest}>
-      <h1>Latest Contributions</h1>
+      <h1>Latest Contributions (LP Token)</h1>
       <div className={styles.list}>
         {contributions.length === 0 ? (
           <div className={styles.card}>
