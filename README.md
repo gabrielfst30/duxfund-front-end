@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🪙 DuxFund - Frontend
 
-## Getting Started
+**DuxFund** é uma aplicação web moderna desenvolvida com **Next.js** que integra a blockchain **XRPL (XRP Ledger)**, oferecendo funcionalidades completas de transações de criptomoedas e mintagem de NFTs.
 
-First, run the development server:
+---
+
+## 🚀 Tecnologias Utilizadas
+
+* **Next.js 15** – Framework React com suporte ao App Router
+* **React 19** – Biblioteca para construção de interfaces reativas
+* **TypeScript** – Tipagem estática para maior segurança
+* **SASS/SCSS** – Estilização modular e avançada
+* **Prisma ORM** – Integração com banco de dados MySQL
+* **XRPL.js** – Biblioteca oficial para interações com o XRP Ledger
+
+---
+
+## 🔧 Funcionalidades Principais
+
+* **Criação de carteiras XRPL** – Geração automática de wallets
+* **Fundação de carteiras** – Depósito inicial automatizado (apenas para testes)
+* **Transações de pagamento** – Envio de XRP entre contas
+* **Mintagem de NFTs** – Criação de NFTs baseados em cada transação executada
+* **Histórico de transações** – Armazenamento e consulta via banco de dados
+
+---
+
+## 🗃️ Estrutura do Banco de Dados (MySQL + Prisma)
+
+* **`transactions`** – Registro principal das transações realizadas
+* **`payments`** – Detalhes específicos de cada pagamento
+* **`nftMints`** – Informações dos NFTs gerados no processo
+
+---
+
+## 🛠️ Como Executar o Projeto Localmente
 
 ```bash
+# Instale as dependências
+npm install
+
+# Configure as variáveis de ambiente (exemplo abaixo)
+# .env
+DATABASE_URL="mysql://user:password@localhost:3306/duxfund"
+
+# Execute as migrações do banco de dados
+npx prisma migrate dev
+
+# Inicie o servidor de desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🌐 Endpoints da API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Método | Rota                            | Descrição                              |
+| ------ | ------------------------------- | -------------------------------------- |
+| POST   | `/api/create_wallet`            | Cria uma nova carteira XRPL            |
+| POST   | `/api/fund_wallet`              | Funda uma carteira para fins de teste  |
+| POST   | `/api/send_transaction`         | Executa uma transação e gera um NFT    |
+| GET    | `/api/last_ledger_transactions` | Retorna as últimas transações gravadas |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📌 Observações Finais
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Este projeto representa uma solução completa para interação com a blockchain **XRPL**, combinando:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Geração e gestão de carteiras
+* Execução de pagamentos em XRP
+* Mintagem de NFTs
+* Persistência de dados com banco relacional
+* Interface moderna e robusta com React/Next.js
