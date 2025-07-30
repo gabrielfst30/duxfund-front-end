@@ -2,10 +2,9 @@
 // 2. instalar o client do prisma -> npm install @prisma/client
 // 3. inicializar o prisma no projeto -> npx prisma init
 
-// COMO GERAR O CLIENTE: npx prisma generate --schema prisma/schema.prisma
+// COMO GERAR O CLIENTE: npx prisma generate --schema prisma
 // CRIAR BANCO DO ZERO OU ATUALIZAR ESTRUTURA COM HISTÓRICO: npx prisma migrate dev --schema prisma/schema.prisma
 // ATUALIZAR BANCO RÁPIDO: npx prisma db push
-
 
 generator client {
   provider = "prisma-client-js"
@@ -18,50 +17,34 @@ datasource db {
 }
 
 model Transactions {
-  id              Int      @id @default(autoincrement())
-  id_payments     Int      @unique // fk de payments
-  id_nft_mints    Int      @unique // fk de nft_mints
-  xrpl_id         Int
-  type            String   @db.VarChar(20)
-  hash            String   @unique @db.Char(64) // hash da transação
-  ledger_index    Int
-  close_time      DateTime @db.Timestamp(3)
-  validated       Int      @db.TinyInt
-  result_code     String   @db.VarChar(20)
-  fee             BigInt
-  account         String   @db.VarChar(35) // address remetente
-  sequence        BigInt
-  last_ledger_seq BigInt?
-  flags           BigInt?
-  ledger_hash     String?  @db.Char(64)
-  ctid            String?  @db.VarChar(32)
+  id                  Int      @id @default(autoincrement())
+  hash                String   @unique @db.Char(64) // hash único da transação
+  ledger_index        Int // número do bloco/ledger onde a transação foi incluída
+  type                String   @db.VarChar(20) // tipo da transação (Payment, NFTokenMint, etc.)
+  account             String   @db.VarChar(35) // endereço da conta que enviou a transação
+  delivered_amount    String
+  account_destination String   @db.VarChar(35) //endereço da conta que recebeu a tx
+  validated           Boolean  @default(false) // se a transação foi validada pela rede
+  result_code         String   @db.VarChar(20) // código de resultado da transação
+  created_at          DateTime @default(now()) // horário de inserção do dado no banco
 
-  // Criando relacionamento
-  payments Payments[] 
-  nft_mints NftMints[]
+  // Relacionamento com NFTs (opcional)
+  nfts NftMints[]
 
   @@map("transactions")
 }
 
-model Payments {
-  id               Int    @id
-  destination     String @db.VarChar(35) //address destinatário
-  deliver_max      BigInt
-  delivered_amount String @db.VarChar(45)
-
-  // id referencia id_payments em Transactions
-  fk_transactions_to_payments Transactions @relation(fields: [id], references: [id_payments])
-
-  @@map("payments")
-}
-
 model NftMints {
-  id    Int    @id
-  uri   String
-  taxon Int
+  id               Int    @id @default(autoincrement())
+  nft_hash         String @unique @db.Char(64) // hash único do nft
+  transaction_hash String // FK para Transactions
+  type             String @db.VarChar(20) // tipo da transação (Payment, NFTokenMint, etc.)
+  uri              String // URI do NFT (hexadecimal)
+  taxon            Int // taxon do NFT
+  created_at DateTime @default(now()) // horário de inserção
 
-  // id referencia id_nft_mints em Transactions
-  fk_transactions_to_nft_mints Transactions @relation(fields: [id], references: [id_nft_mints])
+  // Relacionamento com Transactions
+  transaction Transactions @relation(fields: [transaction_hash], references: [hash])
 
   @@map("nft_mints")
 }
