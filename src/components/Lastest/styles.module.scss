@@ -62,4 +62,13 @@
     font-weight: bold;
     font-size: 14px;
   }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 12.2px;
+    overflow-y: auto;
+    max-height: 398.8px; // exibe exatamente 5 cards com espaçamento
+    padding-right: 4px;
+  }
 }

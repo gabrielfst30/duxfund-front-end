@@ -1,6 +1,21 @@
+import { useState } from "react";
 import styles from "./styles.module.scss";
 
-export function Contribute() {
+interface ContributeProps {
+  onSend: (amount: number) => void;
+}
+
+export function Contribute({ onSend }: ContributeProps) {
+  const [amount, setAmount] = useState("");
+
+  const handleSend = () => {
+    const value = parseFloat(amount);
+    if (!isNaN(value) && value > 0) {
+      onSend(value);
+      setAmount("");
+    }
+  };
+
   return (
     <div className={styles.Contribute}>
       <div className={styles.header}>
@@ -17,11 +32,13 @@ export function Contribute() {
           min="0"
           step="any"
           className={styles.amountInput}
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
         />
       </div>
 
       <div className={styles.buttonWrapper}>
-        <button>Send Contribution</button>
+        <button onClick={handleSend}>Send Contribution</button>
       </div>
     </div>
   );
