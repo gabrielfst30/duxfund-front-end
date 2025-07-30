@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { client } from "@/xrpl/client"
 import { xrpToDrops } from "xrpl";
 import { Wallet } from "xrpl";
-import { prisma } from "@/prisma";
+import { prismaClient } from "@/prisma";
 
 
 export async function POST() {
@@ -70,55 +70,37 @@ export async function POST() {
     //Sempre desconectar após operações
     client.disconnect()
 
-    // 1) Cria o payment
-    // const payment = await prisma.payments.create({
-    //     data: {
-    //         destination: txResult.result.tx_json.Destination,   
-    //         deliver_max: BigInt(txResult.result.tx_json.DeliverMax),
-    //         delivered_amount: BigInt(txResult.result.meta?.delivered_amount),
-    //     },
-    // });
+    // 1) Cria a transação
+    const transaction = await prismaClient.transactions.create({
+        data: {
+            hash: txResult.result.hash,
+            ledger_index: Number(txResult.result.ledger_index),
+            type: txResult.result.tx_json.TransactionType,
+            account: txResult.result.tx_json.Account,
+            delivered_amount: typeof txResult.result.meta === "object" && txResult.result.meta !== null && "delivered_amount" in txResult.result.meta
+                ? (txResult.result.meta as any).delivered_amount
+                : null,
+            account_destination: typeof txResult.result.tx_json.Destination === "string"
+                ? txResult.result.tx_json.Destination
+                : "",
+            validated: Boolean(txResult.result.validated),
+            result_code: "tesSUCCESS",
+        }
+    });
 
-    // 2) Cria o nft mint
-    // const nftMint = await prisma.nftMints.create({
-    //     data: {
-    //         uri: txResult.result.tx_json.URI,
-    //         taxon: txResult.result.tx_json.NFTokenTaxon,  
-    //     },
-    // });
+    // 2) Cria o NFT relacionado à transação
+    const nft = await prismaClient.nftMints.create({
+        data: {
+            nft_hash: mintResult.result.hash,
+            type: mintResult.result.tx_json.TransactionType,
+            uri: uriHex,
+            taxon: Number(mintResult.result.tx_json.NFTokenTaxon),
+            transaction_hash: transaction.hash,
+        },
+    });
 
-    // 3) Cria a transaction
-    // const transaction = await prisma.transactions.create({
-    //     data: {
-    //         id_payments: payment.id,
-    //         id_nft_mints: nftMint.id,
-    //         xrpl_id: txResult.result.tx_json.Sequence,
-    //         type: txResult.result.tx_json.TransactionType,
-    //         hash: txResult.result.hash,
-    //         ledger_index: txResult.result.ledger_index,
-    //         close_time: new Date(txResult.result.close_time_iso),
-    //         validated: txResult.result.validated ? 1 : 0,
-    //         result_code: txResult.result.meta?.TransactionResult ?? "",
-    //         fee: BigInt(txResult.result.tx_json.Fee),
-    //         account: txResult.result.tx_json.Account,
-    //         sequence: BigInt(txResult.result.tx_json.Sequence),
-    //         last_ledger_seq: txResult.result.tx_json.LastLedgerSequence
-    //             ? BigInt(txResult.result.tx_json.LastLedgerSequence)
-    //             : undefined,
-    //         flags: typeof txResult.result.tx_json.Flags === "number"
-    //             ? BigInt(txResult.result.tx_json.Flags)
-    //             : undefined,
-    //         ledger_hash: txResult.result.ledger_hash,
-    //         ctid: txResult.result.ctid,
-    //     },
-    // });
-
-    // return NextResponse.json({
-    //     transaction
-    // }, { status: 200 });
-
-    // return NextResponse.json({
-    //     payment: txResult,
-    //     nftMint: mintResult
-    // }, { status: 200 });
+    return NextResponse.json({
+        transaction,
+        nft
+    }, { status: 200 });
 }
