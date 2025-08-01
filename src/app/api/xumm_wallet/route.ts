@@ -25,14 +25,15 @@ export async function POST(request: NextRequest) {
   }
 
   // 2) Instanciar o SDK dentro do handler para garantir que as env vars já estejam carregadas
+  // Serve para criar e consultar payloads/request de conexões
   const sdk = new XummSdk(apiKey, apiSecret);
 
-  // 3) Tentar ler o body como JSON; se falhar, assume objeto vazio
+  // 3) Req Body
   const { uuid } = (await request.json().catch(() => ({}))) as {
     uuid?: string;
   };
 
-  // 4) Se vier `uuid`, executa polling do payload
+  // 4) Se vier `uuid`, executa a verificação do status da conexão do payload
   if (uuid) {
     // 4.a) Buscar o payload existente pelo UUID
     const payload = await sdk.payload.get(uuid);
@@ -46,6 +47,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 4.c) Retornar o estado atual do payload
+    // Se a conexão for aprovada pego o response da conexão
     return NextResponse.json({
       uuid,
       resolved: payload.meta.resolved,
