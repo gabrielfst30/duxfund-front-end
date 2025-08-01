@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { client } from "@/xrpl/client"
+import { client } from "@/services/xrpl/client"
 import { xrpToDrops } from "xrpl";
 import { Wallet } from "xrpl";
 import { prismaClient } from "@/prisma";
