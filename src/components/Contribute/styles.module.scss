@@ -1,24 +1,27 @@
+@use "../../../src/styles/variables.scss" as *;
+
 .Contribute {
-  background-color: #121212;
-  font-family: Space Grotesk;
+  background-color: $color-background;
+  border: 1px solid $color-text-black;
+  font-family: $font-base;
   width: 662px;
   height: 236px;
   border-radius: 12px;
-  padding: 20px 16px;
-  color: #fff;
+  padding: $spacing-list;
+  color: $color-text-white;
   display: flex;
   flex-direction: column;
   gap: 16px;
 
   h1 {
-    font-size: 18px;
+    font-size: $font-size-title;
     font-weight: 700;
     margin: 0;
   }
 
   p {
-    font-size: 14px;
-    color: #ababab;
+    font-size: $font-size-subtitle;
+    color: $color-subtitle;
     margin: 0 0 8px 0;
   }
 
@@ -27,7 +30,7 @@
     height: 24px;
     font-size: 16px;
     font-weight: 600;
-    color: #ffffff;
+    color: $color-text-white;
     margin-bottom: 4px;
   }
 
@@ -37,10 +40,10 @@
     height: 40px;
     padding: 8px 12px;
     border-radius: 6px;
-    border: 1px solid #555;
-    background-color: #222;
-    color: #eee;
-    font-size: 14px;
+    border: 1px solid $color-text-white;
+    background-color: $color-background;
+    color: $color-text-white;
+    font-size: $font-size-base;
     box-sizing: border-box;
     margin-bottom: 0;
     margin-top: 8px; /* Aqui está o espaçamento acima do input */
@@ -54,14 +57,14 @@
   }
 
   button {
-    background-color: #fdc32f;
+    background-color: $color-primary;
     border: none;
     border-radius: 6px;
     padding: 10px;
     width: 100%;
     height: 45px;
     font-weight: 700;
-    color: #000;
+    color: $color-text-black;
     cursor: pointer;
   }
 }
