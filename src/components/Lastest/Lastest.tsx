@@ -23,6 +23,8 @@ export function Lastest({ contributions }: LastestProps) {
         ) : (
           contributions.map((contribution, index) => {
             const date = new Date(contribution.timestamp);
+            const day = date.getDate().toString().padStart(2, "0");
+            const hours = date.getHours().toString().padStart(2, "0");
             let month = date.toLocaleString("default", { month: "short" });
             month = month.charAt(0).toUpperCase() + month.slice(1);
             const minutes = date.getMinutes().toString().padStart(2, "0");
@@ -32,7 +34,7 @@ export function Lastest({ contributions }: LastestProps) {
                 <div className={styles.left}>
                   <span className={styles.address}>User #{index + 1}</span>
                   <span className={styles.time}>
-                    {minutes} minutos {month}
+                    {hours}:{minutes} - {month} {day}
                   </span>
                 </div>
                 <div className={styles.right}>{contribution.amount} XRP</div>
