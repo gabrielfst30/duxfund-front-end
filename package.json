@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^6.13.0",
     "@xrpl-walletconnect/core": "^0.1.0",
     "@xrpl-walletconnect/react": "^0.1.1",
     "axios": "^1.10.0",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
+    "prisma": "^6.13.0",
     "sass": "^1.89.2",
     "typescript": "^5"
   }

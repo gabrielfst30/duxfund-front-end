@@ -1,0 +1,50 @@
+// 1. instalar o prisma -> npm install prisma --save-dev 
+// 2. instalar o client do prisma -> npm install @prisma/client
+// 3. inicializar o prisma no projeto -> npx prisma init
+
+// COMO GERAR O CLIENTE: npx prisma generate --schema prisma
+// CRIAR BANCO DO ZERO OU ATUALIZAR ESTRUTURA COM HISTÓRICO: npx prisma migrate dev --schema prisma/schema.prisma
+// ATUALIZAR BANCO RÁPIDO: npx prisma db push
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Transactions {
+  id                  Int      @id @default(autoincrement())
+  hash                String   @unique @db.Char(64) // hash único da transação
+  ledger_index        Int // número do bloco/ledger onde a transação foi incluída
+  type                String   @db.VarChar(20) // tipo da transação (Payment, NFTokenMint, etc.)
+  account             String   @db.VarChar(35) // endereço da conta que enviou a transação
+  delivered_amount    String
+  account_destination String   @db.VarChar(35) //endereço da conta que recebeu a tx
+  validated           Boolean  @default(false) // se a transação foi validada pela rede
+  result_code         String   @db.VarChar(20) // código de resultado da transação
+  created_at          DateTime @default(now()) // horário de inserção do dado no banco
+
+  // Relacionamento com NFTs (opcional)
+  nfts NftMints[]
+
+  @@map("transactions")
+}
+
+model NftMints {
+  id               Int    @id @default(autoincrement())
+  nft_hash         String @unique @db.Char(64) // hash único do nft
+  transaction_hash String // FK para Transactions
+  type             String @db.VarChar(20) // tipo da transação (Payment, NFTokenMint, etc.)
+  uri              String // URI do NFT (hexadecimal)
+  taxon            Int // taxon do NFT
+  created_at DateTime @default(now()) // horário de inserção
+
+  // Relacionamento com Transactions
+  transaction Transactions @relation(fields: [transaction_hash], references: [hash])
+
+  @@map("nft_mints")
+}
