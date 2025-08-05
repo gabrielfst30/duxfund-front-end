@@ -1,10 +1,4 @@
 import styles from "./styles.module.scss";
-
-interface Contribution {
-  amount: number;
-  timestamp: string;
-}
-
 interface LastestProps {
   contributions: Contribution[];
 }
