@@ -37,6 +37,11 @@ export async function POST(req: NextRequest) {
             transaction: txid,
         });
 
+        const txValidated = xrplResult.result?.validated ?? false;
+        if (!txValidated) {
+            return NextResponse.json({ resolved: false }); // ainda aguardando ser validada na ledger
+        }
+
         console.log("XRPL RESULT:", xrplResult)
 
         // Pegando dados do request e salvando no banco
@@ -56,10 +61,10 @@ export async function POST(req: NextRequest) {
                 result_code: "tesSUCCESS",
             }
         });
-        
+
         const signedBy = payload.response.account;  // carteira do usuário
 
-        return NextResponse.json({ resolved: true, tx: txResult, account: signedBy});
+        return NextResponse.json({ resolved: true, tx: txResult, account: signedBy });
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
