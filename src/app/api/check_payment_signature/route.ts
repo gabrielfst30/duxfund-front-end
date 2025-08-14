@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
         console.log("XRPL RESULT:", xrplResult)
 
         // Pegando dados do request e salvando no banco
-        const txResult = await prismaClient.transactions.create({
+        const txResult = await prismaClient.payments.create({
             data: {
                 hash: xrplResult.result.hash,
                 ledger_index: Number(xrplResult.result.ledger_index),
