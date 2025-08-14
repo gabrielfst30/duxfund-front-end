@@ -80,7 +80,7 @@ export function Contribute() {
         // Se a assinatura da transação estiver concluída
         if (checkPaymentSignatureResult?.resolved) {
           clearInterval(pollingTxInterval); // para o polling
-          alert("Contribuição confirmada! NFT será gerado em breve 🚀");
+          alert("Contribuição confirmada! Clique em 'Assinar NFT' para assinar seu NFT! 🚀");
           console.log("Dados da transação:", checkPaymentSignatureResult.tx);
 
           // Faça o mint do nft
