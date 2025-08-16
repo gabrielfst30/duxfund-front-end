@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@gemwallet/api": "^3.8.0",
     "@prisma/client": "^6.13.0",
     "@xrpl-walletconnect/core": "^0.1.0",
     "@xrpl-walletconnect/react": "^0.1.1",
