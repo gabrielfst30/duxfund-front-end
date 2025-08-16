@@ -70,21 +70,6 @@ export function LatestContributions() {
     );
   }
 
-  if (error) {
-    return (
-      <div className={styles.Lastest}>
-        <h1>Latest Contributions (LP Token)</h1>
-        <div className={styles.list}>
-          <div className={styles.card}>
-            <div className={styles.left}>
-              <span className={styles.address}>Erro: {error}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className={styles.Lastest}>
       <h1>Latest Contributions (LP Token)</h1>
@@ -100,12 +85,13 @@ export function LatestContributions() {
             return (
               <div className={styles.card} key={index}>
                 <div className={styles.left}>
-                  <span className={styles.address}>Payment Tx: {contribution.payment_hash}</span>
+                  {/* <span className={styles.address}>Payment Tx: {contribution.payment_hash}</span> */}
+                  <span className={styles.nft}>{contribution.nft_hash}</span>
                   <span className={styles.time}>
                     {contribution.created_at}
                   </span>
                 </div>
-                <div className={styles.right}>{contribution.nft_hash} XRP</div>
+                <div className={styles.right}>{} XRP</div>
               </div>
             );
           })

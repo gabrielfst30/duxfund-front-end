@@ -107,6 +107,7 @@ export function Contribute() {
 
             const checkNftSignatureResult = await res.json();
 
+            // Para quando tiver um retorno do res.json()
             if (checkNftSignatureResult.resolved) {
               clearInterval(pollingNftInterval);
               alert('🎉 NFT cunhado na sua wallet!');
