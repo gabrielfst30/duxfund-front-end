@@ -4,7 +4,11 @@ import { prismaClient } from "@/prisma";
 
 export async function GET() {
 
-    const allNfts = await prismaClient.nftMints.findMany()
+    const allNfts = await prismaClient.nftMints.findMany({
+        orderBy:{
+            created_at: "desc"
+        }
+    })
 
     if (!allNfts) {
         return NextResponse.json({ error: "Não existe NFTs registrados" }, { status: 500 });
